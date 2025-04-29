@@ -1,0 +1,52 @@
+@font-face {
+    font-family: 'VAG Gummy Bites';
+    src: url(/frontend/fonts/VAGGummyBites.ttf);
+}
+
+@media (min-width: 1280px) {
+.title-name{
+    font-family: 'VAG Gummy Bites';
+    font-size: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 75vw;
+    height: 15vh;
+    background-color: aqua;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+.title-name{
+    font-family: 'VAG Gummy Bites';
+    font-size: 40px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 75vw;
+    height: 15vh;
+    background-color: aqua;
+}    
+}
+
+@media (max-width: 767px) {
+.title-name{
+    font-family: 'VAG Gummy Bites';
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 85vw;
+    height: 15vh;
+    background-color: aqua;
+}   
+}
