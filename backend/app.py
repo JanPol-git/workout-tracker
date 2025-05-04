@@ -12,7 +12,7 @@ db.init_app(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/app.db'
 bcrypt = Bcrypt(app)   
 jwt = JWTManager(app)   
-CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 with app.app_context():
     db.create_all()
@@ -38,37 +38,34 @@ def register():
 
     return jsonify({'message': 'User created!'}), 201
 
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    data = request.get_json()
-    user = User.query.filter_by(username=data.get('username')).first()
+    if request.method == 'POST':
+        if not request.is_json:
+            return jsonify({"error": "Request must be JSON"}), 400
+        data = request.get_json()
+        user = User.query.filter_by(username=data.get('username')).first()
 
-    # Проверка пароля
-    if not user or not bcrypt.check_password_hash(user.password, data.get('password')):
-        return jsonify({'error': 'Invalid credentials'}), 401
+        # Проверка пароля
+        if not user or not bcrypt.check_password_hash(user.password, data.get('password')):
+            return jsonify({'error': 'Invalid credentials'}), 401
 
-    # Генерация JWT
-    access_token = create_access_token(identity=user.username)
-    return jsonify({'token': access_token}), 200
+        # Генерация JWT
+        access_token = create_access_token(identity=user.username)
+        return jsonify({'token': access_token}), 200
+    return render_template('login.html')
 
-@app.route('/profile', methods=['GET'])
+
+@app.route('/profile')
 @jwt_required()
-def profile():
-    current_user = get_jwt_identity() 
-    return jsonify({'user': current_user}), 200
+def serve_profile_page():
+    current_user = get_jwt_identity()
+    return render_template('profile.html', user=current_user), 200
 
 @app.route('/')
 def redirect_to_login():
     return redirect("/login")
 
-@app.route('/login')
-def serve_login_page():
-    return render_template('login.html')
-
-@app.route('/profile')
-def serve_profile_page():
-    return render_template('profile.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)  # Режим отладки
-

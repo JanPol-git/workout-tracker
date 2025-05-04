@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
-    <script src="{{ url_for('static', filename='login.js') }}"></script>
     <title>Workout tracker</title>
 </head>
 <body>
@@ -17,11 +16,12 @@
             <div class="container">
                 <input type="password" id="password" placeholder="Enter Password" required>
             </div>
-            <div class="container" id="buttons" type="submit">
-                <button>LOG IN</button>
+            <div class="container" id="buttons">
+                <button type="submit">LOG IN</button>
             </div>
             <div id="error-message" style="color: red;"></div>
         </form>
     </div>
+    <script src="{{ url_for('static', filename='login.js') }}" defer></script>
 </body>
 </html>
