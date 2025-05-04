@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Sanchez&display=swap');
+
+@media (min-width: 1280px) {
+.title-name{
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 50px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 75vw;
+    height: 15vh;
+/*    background-color: aqua; */
+}
+
+.reg-window{
+    display: flex;
+    width: 75vw;
+    height: 35vw;
+/*    background-color: red; */
+    flex-direction: column;
+    margin: auto;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    height: 33%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+input[type=text], [type=password] {
+    width: 50vw;
+    height: 5vh;
+    margin-top: 15vh;
+    border-radius: 20px;
+    text-align: center;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 25px;
+    border-color: black;
+}
+input[type=text]{
+    margin-top: 15vh;
+}
+input[type=password]{
+    margin-bottom: 15vh;
+}
+
+button{
+/*    background-color: blue; */
+    border: none;
+    color: black;
+    width: 15vw;
+    height: 7vh;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    justify-self: center;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 32px;
+    margin-bottom: 12vh;
+    border-radius: 20px;
+}
+
+button:hover{
+    cursor: pointer;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+.title-name{
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 40px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 75vw;
+    height: 15vh;
+    background-color: aqua;
+}    
+}
+
+@media (max-width: 767px) {
+.title-name{
+    font-family: 'Cal Sans', sans-serif;
+    font-size: 20px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: auto; 
+    width: 85vw;
+    height: 15vh;
+    background-color: aqua;
+}   
+}
