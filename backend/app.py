@@ -1,17 +1,18 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, redirect
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from config import Config
 from models import db, User
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="../frontend/", static_folder="../frontend/")
 app.config.from_object(Config)
 db.init_app(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/app.db'
 bcrypt = Bcrypt(app)   
 jwt = JWTManager(app)   
-
+CORS(app, resources={r"/*": {"origins": "http://127.0.0.1:5000"}})
 
 with app.app_context():
     db.create_all()
@@ -56,10 +57,18 @@ def profile():
     current_user = get_jwt_identity() 
     return jsonify({'user': current_user}), 200
 
+@app.route('/')
+def redirect_to_login():
+    return redirect("/login")
 
+@app.route('/login')
+def serve_login_page():
+    return render_template('login.html')
 
-
+@app.route('/profile')
+def serve_profile_page():
+    return render_template('profile.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)  # Режим отладки
+    app.run(debug=True, port=5000)  # Режим отладки
 
